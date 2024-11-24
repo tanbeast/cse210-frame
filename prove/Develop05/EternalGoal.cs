@@ -11,6 +11,4 @@ public class EternalGoal : Goal{
     public override void DisplayGoalStatus(){
         Console.WriteLine($"[ ] {Name}: {Description} (Eternal)");
     }
-
-    public override int GetCurrentPoints() => Points;  // Points are earned every time
 }

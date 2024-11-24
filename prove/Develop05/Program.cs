@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 
 public class Program{
@@ -80,7 +81,6 @@ public class Program{
         else{
             Console.WriteLine("Invalid goal type.");
         }
-        RecalculateTotalScore();
     }
 
     // 2. List goals
@@ -102,6 +102,7 @@ public class Program{
         var fileName = Console.ReadLine();
 
         using (StreamWriter writer = new StreamWriter(fileName)){
+            writer.WriteLine($"{totalScore}");
             foreach (var goal in goals){
                 if (goal is SimpleGoal simpleGoal){
                     // Save simple goal: name, description, points, completion status
@@ -138,10 +139,6 @@ public class Program{
 
                 if (goalData[0] == "SimpleGoal"){
                     var goal = new SimpleGoal(goalData[1], goalData[2], int.Parse(goalData[3]));
-                    if (goalData[4] == "completed")
-                    {
-                        goal.RecordEvent(); // Mark it completed
-                    }
                     goals.Add(goal);
                 }
                 else if (goalData[0] == "EternalGoal"){
@@ -153,11 +150,13 @@ public class Program{
                     goal.SetTimesCompleted(int.Parse(goalData[5])); // Set the times completed
                     goals.Add(goal);
                 }
+                else{
+                    totalScore += int.Parse(goalData[0]);
+                }
             }
         }
 
         Console.WriteLine("Goals loaded successfully.");
-        RecalculateTotalScore();
     }
 
     // 5. Record event
@@ -174,13 +173,9 @@ public class Program{
         else{
             Console.WriteLine("Invalid goal selection.");
         }
-        RecalculateTotalScore();
     }
-    // Method to recalculate the total score based on the current goals
-    private static void RecalculateTotalScore(){
-        totalScore = 0;
-        foreach (var goal in goals){
-            totalScore += goal.GetCurrentPoints();
-        }
+    public static void addpoints(int points){
+        totalScore += points;
     }
+
 }

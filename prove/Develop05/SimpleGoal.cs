@@ -10,6 +10,7 @@ public class SimpleGoal : Goal{
         if (!_isCompleted){
             _isCompleted = true;
             Console.WriteLine($"Goal {Name} completed! You've earned {Points} points.");
+            Program.addpoints(Points);
         }
         else{
             Console.WriteLine($"Goal {Name} has already been completed.");
@@ -23,5 +24,5 @@ public class SimpleGoal : Goal{
         Console.WriteLine($"{completionStatus} {Name}: {Description}");
     }
 
-    public override int GetCurrentPoints() => _isCompleted ? Points : 0;
+
 }

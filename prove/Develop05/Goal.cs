@@ -18,5 +18,4 @@ public abstract class Goal{
     public abstract void DisplayGoalStatus();
 
     // Abstract method to get the current points for the goal
-    public abstract int GetCurrentPoints();
 }

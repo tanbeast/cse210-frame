@@ -39,8 +39,7 @@ public class ChecklistGoal : Goal{
         Console.WriteLine($"{completionStatus} {Name}: {Description} - Completed {_timesCompleted}/{_goalCount} times");
     }
 
-    public override int GetCurrentPoints() => _timesCompleted * Points + (_timesCompleted >= _goalCount ? _bonus : 0);
-
+  
     // Add this method to set the times completed when loading the data
     public void SetTimesCompleted(int timesCompleted){
         _timesCompleted = timesCompleted;
